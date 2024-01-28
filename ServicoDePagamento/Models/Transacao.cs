@@ -7,7 +7,7 @@ namespace ServicoDePagamento.Models
     {
         public int Id { get; set; }
 
-        public double Valor { get; set; }
+        public decimal Valor { get; set; }
 
         public string Descricao { get; set; }
 

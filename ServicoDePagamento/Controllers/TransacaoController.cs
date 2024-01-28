@@ -28,6 +28,7 @@ namespace ServicoDePagamento.Controllers
                 var transacao = new Transacao
                 {
                     Descricao = transacaoViewModel.Descricao,
+                    Valor = transacaoViewModel.Valor,
                     MetodoPagamento = transacaoViewModel.MetodoPagamento,
                     NumeroCartao = transacaoViewModel.NumeroCartao,
                     ValidadeCartao = transacaoViewModel.ValidadeCartao,
@@ -45,6 +46,37 @@ namespace ServicoDePagamento.Controllers
             {
                 return StatusCode(500, "Erro interno");
             }
+        }
+
+        [HttpGet("listarTudo")]
+        public async Task<IActionResult> ListarTodasTransacoes()
+        {
+            try
+            {
+                var transacoes = await _transacaoRepository.ListarTudo();
+                if (transacoes == null) return NotFound("Nao existem transacoes!!");
+                return Ok(transacoes);
+            }
+            catch (Exception ex) 
+            {
+                return StatusCode(500, "Erro interno no servidor");
+            }
+        }
+
+        [HttpGet("listar/{Id:int}")]
+        public async Task<IActionResult> ListarPorId([FromRoute] int Id)
+        {
+            var transacao = await _transacaoRepository.ListarPorId(Id);
+            if (transacao == null) return NotFound("Transação não encontrada!!");
+            return Ok(transacao);
+        }
+
+        [HttpDelete("Remover/{Id:int}")]
+        public async Task<IActionResult> RemoverTransacao([FromRoute] int Id)
+        {
+            var transacao = await _transacaoRepository.RemoverTransacao(Id);
+            if (transacao == false) return NotFound("Transação não encontrada");
+            return Ok("Transacao removida com sucesso");
         }
 
     }

@@ -6,6 +6,8 @@ namespace ServicoDePagamento.ViewModel.TransacaoVM
     {
         public string Descricao { get; set; }
 
+        public decimal Valor {get;set; }
+
         public EMetodoPagamento MetodoPagamento { get; set; }
 
         public string NumeroCartao { get; set; }

@@ -270,3 +270,4 @@ C:\dev\ServicoPagamento\ServicoDePagamento\obj\Debug\net8.0\scopedcss\bundle\Ser
 C:\dev\ServicoPagamento\ServicoDePagamento\obj\Debug\net8.0\ServicoDePagamento.csproj.CopyComplete
 C:\dev\ServicoPagamento\ServicoDePagamento\obj\Debug\net8.0\ServicoDePagamento.genruntimeconfig.cache
 C:\dev\ServicoPagamento\ServicoDePagamento\obj\Debug\net8.0\ref\ServicoDePagamento.dll
+C:\dev\ServicoPagamento\ServicoDePagamento\obj\Debug\net8.0\ServicoDePagamento.sourcelink.json

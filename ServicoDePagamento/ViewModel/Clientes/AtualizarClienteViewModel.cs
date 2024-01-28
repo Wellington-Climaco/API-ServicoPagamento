@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ServicoDePagamento.ViewModel.Cliente
+namespace ServicoDePagamento.ViewModel.Clientes
 {
     public class AtualizarClienteViewModel
     {

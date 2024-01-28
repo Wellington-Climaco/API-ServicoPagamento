@@ -14,7 +14,7 @@ namespace ServicoDePagamento.Data.Mapping
 
             builder.Property(x=>x.Id).ValueGeneratedOnAdd().UseIdentityColumn();
 
-            builder.Property(x => x.Valor).IsRequired().HasColumnName("Valor").HasColumnType("FLOAT");
+            builder.Property(x => x.Valor).IsRequired().HasColumnName("Valor").HasColumnType("MONEY");
 
             builder.Property(x => x.Descricao).IsRequired().HasColumnName("Descricao").HasColumnType("VARCHAR").HasMaxLength(100);
 

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ServicoDePagamento.Data;
 using ServicoDePagamento.Interface;
 using ServicoDePagamento.Models;
+using ServicoDePagamento.ViewModel.TransacaoVM;
 
 namespace ServicoDePagamento.Repository
 {
@@ -27,21 +28,23 @@ namespace ServicoDePagamento.Repository
             return transacao;
         }
 
-        public Task<List<Transacao>> ListarTudo()
+        public Task<List<ListarTransacao>> ListarTudo()
         {
-            return _contexto.Transacoes.AsNoTracking().ToListAsync();            
+            return _contexto.Transacoes.AsNoTracking().Include(x => x.Cliente).Select(x=>new ListarTransacao { Id=x.Id,Valor=x.Valor,Descricao=x.Descricao,
+            MetodoPagamento=x.MetodoPagamento,NumeroCartao=x.NumeroCartao,ValidadeCartao=x.ValidadeCartao,CVV=x.CVV,Cliente=x.Cliente.Nome}).ToListAsync();            
         }
 
         public async Task<bool> RemoverTransacao(int Id)
         {
-            var transacao = await _contexto.Transacoes.FirstOrDefaultAsync(x=> x.Id == Id);
+            var transacao = _contexto.Transacoes.FirstOrDefaultAsync(x=> x.Id == Id);
             _contexto.Remove(transacao);
+            await _contexto.SaveChangesAsync();
             return true;
         }
 
         public async Task<Cliente> ValidarCliente(int Id)
         {
-            var identificacao = await _contexto.Clientes.FirstOrDefaultAsync(x=> x.Id == Id);
+            var identificacao = await _contexto.Clientes.FirstOrDefaultAsync(x=> x.Id == Id);            
             return identificacao;
         }
     }

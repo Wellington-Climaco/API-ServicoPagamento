@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using ServicoDePagamento.Interface;
 using ServicoDePagamento.Models;
-using ServicoDePagamento.ViewModel.Cliente;
+using ServicoDePagamento.ViewModel.Clientes;
 
 namespace ServicoDePagamento.Controllers
 {

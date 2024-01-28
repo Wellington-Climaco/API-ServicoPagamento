@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ServicoDePagamento.Data;
 
@@ -11,9 +12,11 @@ using ServicoDePagamento.Data;
 namespace ServicoDePagamento.Migrations
 {
     [DbContext(typeof(ServicoDbContexto))]
-    partial class ServicoDbContextoModelSnapshot : ModelSnapshot
+    [Migration("20240127172216_AtualizandoDB2")]
+    partial class AtualizandoDB2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

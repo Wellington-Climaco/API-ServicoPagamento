@@ -1,11 +1,12 @@
 ﻿using ServicoDePagamento.Data;
 using ServicoDePagamento.Models;
+using ServicoDePagamento.ViewModel.TransacaoVM;
 
 namespace ServicoDePagamento.Interface
 {
     public interface ITransacaoRepository
     {
-        Task<List<Transacao>> ListarTudo();
+        Task<List<ListarTransacao>> ListarTudo();
 
         Task<Transacao> ListarPorId(int Id);
 
