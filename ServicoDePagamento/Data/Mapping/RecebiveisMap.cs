@@ -16,7 +16,7 @@ namespace ServicoDePagamento.Data.Mapping
 
             builder.Property(x=>x.status).IsRequired().HasColumnName("Status").HasColumnType("VARCHAR").HasMaxLength(100);
 
-            builder.Property(x => x.DataPagamento).IsRequired().HasColumnName("DataPagamento").HasColumnType("SMALLDATETIME").HasDefaultValueSql("GETDATE()");
+            builder.Property(x => x.DataPagamento).IsRequired().HasColumnName("DataPagamento").HasColumnType("DATE").HasDefaultValueSql("GETDATE()");
 
             builder.Property(x => x.Taxa).IsRequired().HasColumnName("Taxa").HasColumnType("FLOAT").HasMaxLength(100);
 

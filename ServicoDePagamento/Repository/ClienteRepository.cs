@@ -2,6 +2,7 @@
 using ServicoDePagamento.Data;
 using ServicoDePagamento.Interface;
 using ServicoDePagamento.Models;
+using static ServicoDePagamento.Enum.Enumerador;
 
 namespace ServicoDePagamento.Repository
 {
@@ -28,14 +29,12 @@ namespace ServicoDePagamento.Repository
         public async Task<Cliente> Adicionar(Cliente cliente)
         {
             await _contexto.Clientes.AddAsync(cliente);
-            await _contexto.SaveChangesAsync();
             return cliente;
         }
 
         public async Task<Cliente> Atualizar(Cliente cliente)
         {
             _contexto.Clientes.Update(cliente);
-            await _contexto.SaveChangesAsync();
             return cliente;
         }
                
@@ -43,8 +42,30 @@ namespace ServicoDePagamento.Repository
         {
             var cliente = await _contexto.Clientes.FirstOrDefaultAsync(x => x.Id == Id);
             _contexto.Remove(cliente);
-            await _contexto.SaveChangesAsync();
             return "Excluido com sucesso";
+        }
+
+        public async Task<bool> Commit()
+        {
+            return await _contexto.SaveChangesAsync() > 0;
+        }
+
+        public Task RollBack()
+        {
+            return Task.CompletedTask;
+        }
+
+        public async Task<double> ConsultarSaldoDisponivel(int Id)
+        {
+            var cliente = await _contexto.Clientes.FirstOrDefaultAsync(x=>x.Id==Id);
+            return cliente.Saldo;        
+        }
+
+        public async Task<double> ConsultarSaldoAReceber(int Id)
+        {
+            var cliente = await _contexto.Clientes.FirstOrDefaultAsync(x => x.Id == Id);
+            var AReceber = await _contexto.Transacoes.Where(x => x.MetodoPagamento == EMetodoPagamento.CartaoCredito).Where(x=>x.Cliente==cliente).Select(x => x.Valor).SumAsync();
+            return AReceber;
         }
     }
 }

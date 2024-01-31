@@ -2,7 +2,7 @@
 
 namespace ServicoDePagamento.Interface
 {
-    public interface IClienteRepository
+    public interface IClienteRepository : IUnitOfWork
     {
         Task<IEnumerable<Cliente>> BuscarTodos();
 
@@ -13,6 +13,12 @@ namespace ServicoDePagamento.Interface
         Task<Cliente> Atualizar(Cliente cliente);
 
         Task<string> Remover(int Id);
+
+        Task<double> ConsultarSaldoDisponivel(int Id);
+
+        Task<double> ConsultarSaldoAReceber(int Id);
+
+
 
 
 

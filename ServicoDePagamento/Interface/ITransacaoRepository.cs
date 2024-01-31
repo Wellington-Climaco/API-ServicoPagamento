@@ -4,7 +4,7 @@ using ServicoDePagamento.ViewModel.TransacaoVM;
 
 namespace ServicoDePagamento.Interface
 {
-    public interface ITransacaoRepository
+    public interface ITransacaoRepository : IUnitOfWork
     {
         Task<List<ListarTransacao>> ListarTudo();
 

@@ -1,4 +1,5 @@
 ﻿using ServicoDePagamento.Enum;
+using System.Text.Json.Serialization;
 using static ServicoDePagamento.Enum.Enumerador;
 
 namespace ServicoDePagamento.Models
@@ -7,7 +8,7 @@ namespace ServicoDePagamento.Models
     {
         public int Id { get; set; }
 
-        public decimal Valor { get; set; }
+        public double Valor { get; set; }
 
         public string Descricao { get; set; }
 
@@ -20,7 +21,7 @@ namespace ServicoDePagamento.Models
         public string CVV {  get; set; }
 
         public Cliente Cliente { get; set; }
-
+        [JsonIgnore]
         public Recebiveis Recebivel { get; set;}
 
     }

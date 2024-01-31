@@ -21,8 +21,9 @@ namespace ServicoDePagamento.Controllers
             try
             {
                 if (clienteViewModel == null) return NotFound("Insira os dados corretamente!!");
-                var Cliente = new Cliente { Nome = clienteViewModel.Nome, Documento = clienteViewModel.Documento, Saldo = clienteViewModel.Saldo, Cep = clienteViewModel.Cep };                
+                var Cliente = new Cliente { Nome = clienteViewModel.Nome, Documento = clienteViewModel.Documento, Cep = clienteViewModel.Cep };                
                 await _clienteRepository.Adicionar(Cliente);
+                await _clienteRepository.Commit();
                 return Ok(Cliente);
             }
             catch(DbUpdateException ex)
@@ -70,6 +71,7 @@ namespace ServicoDePagamento.Controllers
                 cliente.Cep = atualizarCliente.Cep;
 
                 await _clienteRepository.Atualizar(cliente);
+                await _clienteRepository.Commit();
                 return Ok(cliente);
             }
             catch(DbUpdateException ex)
@@ -92,6 +94,7 @@ namespace ServicoDePagamento.Controllers
                 if (cliente == null) return NotFound("Usuario não encontrado");
 
                 await _clienteRepository.Remover(Id);
+                await _clienteRepository.Commit();
                 return Ok("usuario removido!!");
             }
             catch (DbUpdateException ex)
@@ -99,6 +102,26 @@ namespace ServicoDePagamento.Controllers
                 return StatusCode(500, "Não foi possivel remover usuario");
             }
             catch(Exception ex)
+            {
+                return StatusCode(500, "Erro interno");
+            }
+        }
+
+        [HttpGet("v1/cliente/saldoconsulta/{Id:int}")]
+        public async Task<IActionResult> consultarSaldo([FromRoute] int Id)
+        {
+            try
+            {
+                var usuario = await _clienteRepository.BuscarPorId(Id);
+                if (usuario == null) return NotFound("Cliente não encontrado");
+
+                var SaldoDiponivel = await _clienteRepository.ConsultarSaldoDisponivel(Id);
+
+                var SaldoPendente = await _clienteRepository.ConsultarSaldoAReceber(Id);
+                
+                return Ok($"Saldo disponivel: {SaldoDiponivel} \nSaldo Pendente: {SaldoPendente}");
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, "Erro interno");
             }

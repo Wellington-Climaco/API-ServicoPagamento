@@ -8,7 +8,7 @@
 
         public DateTime DataPagamento { get; set; }
 
-        public float Taxa { get; set; }
+        public double Taxa { get; set; }
 
         public Cliente Cliente { get; set; }
 

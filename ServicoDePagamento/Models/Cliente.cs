@@ -8,7 +8,7 @@
 
         public string Documento { get; set; }
 
-        public float Saldo { get; set; }
+        public double Saldo { get; set; } = 0;
 
         public string Cep { get; set; }
 

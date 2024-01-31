@@ -18,7 +18,7 @@ namespace ServicoDePagamento.Data.Mapping
 
             builder.Property(x => x.Documento).IsRequired().HasColumnName("Documento").HasColumnType("VARCHAR").HasMaxLength(100);
 
-            builder.Property(x => x.Saldo).IsRequired().HasColumnName("Saldo").HasColumnType("FLOAT");
+            builder.Property(x => x.Saldo).IsRequired().HasColumnName("Saldo").HasColumnType("MONEY");
 
             builder.Property(x => x.Cep).HasColumnName("CEP").HasColumnType("VARCHAR").HasMaxLength(100);
 

@@ -12,10 +12,6 @@ namespace ServicoDePagamento.ViewModel.Clientes
         [StringLength(12)]
         public string Documento { get; set; }
 
-        [Required(ErrorMessage = "Saldo é um campo obrigatório")]
-        public float Saldo { get; set; }
-
-
         public string Cep { get; set; }
 
     }

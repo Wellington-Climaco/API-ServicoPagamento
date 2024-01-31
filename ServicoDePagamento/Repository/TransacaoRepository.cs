@@ -18,7 +18,6 @@ namespace ServicoDePagamento.Repository
         public async Task<Transacao> NovaTransacao(Transacao transacao)
         {
             await _contexto.Transacoes.AddAsync(transacao);
-            await _contexto.SaveChangesAsync();
             return transacao;
         }
 
@@ -38,7 +37,6 @@ namespace ServicoDePagamento.Repository
         {
             var transacao = _contexto.Transacoes.FirstOrDefaultAsync(x=> x.Id == Id);
             _contexto.Remove(transacao);
-            await _contexto.SaveChangesAsync();
             return true;
         }
 
@@ -46,6 +44,17 @@ namespace ServicoDePagamento.Repository
         {
             var identificacao = await _contexto.Clientes.FirstOrDefaultAsync(x=> x.Id == Id);            
             return identificacao;
+        }
+
+        public async Task<bool> Commit()
+        {
+            return await _contexto.SaveChangesAsync() > 0;
+            
+        }
+
+        public Task RollBack()
+        {
+            return Task.CompletedTask;
         }
     }
 }

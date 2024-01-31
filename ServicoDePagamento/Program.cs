@@ -24,6 +24,7 @@ namespace ServicoDePagamento
             });
             builder.Services.AddScoped<IClienteRepository,ClienteRepository > ();
             builder.Services.AddScoped<ITransacaoRepository,TransacaoRepository> ();
+            builder.Services.AddScoped<IRecebivelRepository,RecebiveisRepository> ();
             
 
 
