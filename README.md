@@ -13,10 +13,12 @@ Esse endpoint retorna os dados da transação, do cliente e gera um recibo(Receb
 
 <img src="https://github.com/Wellington-Climaco/API-ServicoPagamento/assets/142629826/c899da82-bbb8-446d-b3ae-45dcca58cf3b" width=40% height=40%> <img src="https://github.com/Wellington-Climaco/API-ServicoPagamento/assets/142629826/170608e3-95ce-407a-90b9-64b2e6d98c96" width=45% height=45%>
 
-## Tecnologias Utilizadas
+## Tecnologias e Metodologias Utilizadas
 - ASP.NET
 - SQL server
 - C#
+- Repository Patern
+- UnitOfWork
 
 ## Como executar o projeto
 
