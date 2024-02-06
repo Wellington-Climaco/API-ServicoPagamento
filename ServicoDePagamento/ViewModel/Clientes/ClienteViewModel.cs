@@ -9,9 +9,10 @@ namespace ServicoDePagamento.ViewModel.Clientes
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "Documento é um campo obrigatório")]
-        [StringLength(12)]
+        [Length(9,12,ErrorMessage ="Digite um documento valido")]        
         public string Documento { get; set; }
 
+        [Required(ErrorMessage ="Cep é um campo obrigatório")]
         public string Cep { get; set; }
 
     }

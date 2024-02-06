@@ -18,6 +18,8 @@ namespace ServicoDePagamento.Interface
 
         Task<double> ConsultarSaldoAReceber(int Id);
 
+        Task<bool> ValidarCliente(string Documento);
+
 
 
 

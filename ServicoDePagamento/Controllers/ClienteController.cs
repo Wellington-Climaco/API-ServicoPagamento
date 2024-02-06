@@ -21,6 +21,9 @@ namespace ServicoDePagamento.Controllers
             try
             {
                 if (clienteViewModel == null) return NotFound("Insira os dados corretamente!!");
+                var validacao = await _clienteRepository.ValidarCliente(clienteViewModel.Documento);
+                if (validacao == true) return BadRequest("Já existe uma conta com esse documento");
+
                 var Cliente = new Cliente { Nome = clienteViewModel.Nome, Documento = clienteViewModel.Documento, Cep = clienteViewModel.Cep };                
                 await _clienteRepository.Adicionar(Cliente);
                 await _clienteRepository.Commit();

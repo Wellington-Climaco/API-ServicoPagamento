@@ -12,6 +12,8 @@ namespace ServicoDePagamento.Models
 
         public string Descricao { get; set; }
 
+        public string NomeDonoCartao { get; set; }
+
         public EMetodoPagamento MetodoPagamento {  get; set; }
 
         public string NumeroCartao {  get; set; }

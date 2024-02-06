@@ -67,5 +67,15 @@ namespace ServicoDePagamento.Repository
             var AReceber = await _contexto.Transacoes.Where(x => x.MetodoPagamento == EMetodoPagamento.CartaoCredito).Where(x=>x.Cliente==cliente).Select(x => x.Valor).SumAsync();
             return AReceber;
         }
+
+        public async Task<bool> ValidarCliente(string Documento)
+        {
+            var cliente = await _contexto.Clientes.FirstOrDefaultAsync(x=>x.Documento ==Documento);
+            if (cliente==null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

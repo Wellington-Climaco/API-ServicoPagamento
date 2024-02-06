@@ -23,5 +23,13 @@ namespace ServicoDePagamento.Controllers
             return Ok(recibos);
         }
 
+        [HttpGet("ListById/{Id:int}")]
+        public async Task<IActionResult> BuscarReciboPorId([FromRoute] int Id)
+        {
+            var recibo = await _recebivelRepository.BuscarPorId(Id);
+            if (recibo == null) return NotFound("Recibo não encontrado");
+            return Ok(recibo);
+        }
+
     }
 }

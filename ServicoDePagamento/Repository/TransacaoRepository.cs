@@ -30,12 +30,12 @@ namespace ServicoDePagamento.Repository
         public Task<List<ListarTransacao>> ListarTudo()
         {
             return _contexto.Transacoes.AsNoTracking().Include(x => x.Cliente).Select(x=>new ListarTransacao { Id=x.Id,Valor=x.Valor,Descricao=x.Descricao,
-            MetodoPagamento=x.MetodoPagamento,NumeroCartao=x.NumeroCartao,ValidadeCartao=x.ValidadeCartao,CVV=x.CVV,Cliente=x.Cliente.Nome}).ToListAsync();            
+            MetodoPagamento=x.MetodoPagamento,NumeroCartao=x.NumeroCartao,ValidadeCartao=x.ValidadeCartao,CVV=x.CVV,Cliente=x.Cliente.Nome,NomeDonoCartao=x.NomeDonoCartao}).ToListAsync();            
         }
 
         public async Task<bool> RemoverTransacao(int Id)
         {
-            var transacao = _contexto.Transacoes.FirstOrDefaultAsync(x=> x.Id == Id);
+            var transacao = await _contexto.Transacoes.FirstOrDefaultAsync(x=> x.Id == Id);
             _contexto.Remove(transacao);
             return true;
         }

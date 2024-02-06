@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj": {}
+    "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj": {}
   },
   "projects": {
-    "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj": {
+    "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
+        "projectUniqueName": "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
         "projectName": "ServicoDePagamento",
-        "projectPath": "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
+        "projectPath": "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
         "packagesPath": "C:\\Users\\welli\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\obj\\",
+        "outputPath": "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

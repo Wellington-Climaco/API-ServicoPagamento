@@ -31,6 +31,7 @@ namespace ServicoDePagamento.Controllers
                 {
                     Descricao = transacaoViewModel.Descricao,
                     Valor = transacaoViewModel.Valor,
+                    NomeDonoCartao = transacaoViewModel.NomeDonoCartao,
                     MetodoPagamento = transacaoViewModel.MetodoPagamento,
                     NumeroCartao = transacaoViewModel.NumeroCartao,
                     ValidadeCartao = transacaoViewModel.ValidadeCartao,
@@ -104,10 +105,21 @@ namespace ServicoDePagamento.Controllers
         [HttpDelete("Remover/{Id:int}")]
         public async Task<IActionResult> RemoverTransacao([FromRoute] int Id)
         {
-            var transacao = await _transacaoRepository.RemoverTransacao(Id);
-            if (transacao == false) return NotFound("Transação não encontrada");
-            await _transacaoRepository.Commit();
-            return Ok("Transacao removida com sucesso");
+            try
+            {
+                var transacao = await _transacaoRepository.RemoverTransacao(Id);
+                if (transacao == false) return NotFound("Transação não encontrada");
+                await _transacaoRepository.Commit();
+                return Ok("Transacao removida com sucesso");
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, "Não foi possivel remover transacao");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro interno");
+            }
         }
 
     }

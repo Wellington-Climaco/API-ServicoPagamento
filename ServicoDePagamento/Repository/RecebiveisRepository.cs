@@ -16,9 +16,10 @@ namespace ServicoDePagamento.Repository
             _DBContexto = contextoDb;
         }
 
-        public Task<Recebiveis> BuscarPorId(int id)
+        public async Task<Recebiveis> BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            var Recibo = await _DBContexto.Recebiveis.FirstOrDefaultAsync(x=>x.Id == id);
+            return Recibo;
         }
 
         public async Task<IEnumerable<Recebiveis>> BuscarTodos()

@@ -18,6 +18,8 @@ namespace ServicoDePagamento.Data.Mapping
 
             builder.Property(x => x.Descricao).IsRequired().HasColumnName("Descricao").HasColumnType("VARCHAR").HasMaxLength(100);
 
+            builder.Property(x => x.NomeDonoCartao).IsRequired().HasColumnName("NomeDonoCartao").HasColumnType("VARCHAR").HasMaxLength(50);
+
             builder.Property(x => x.MetodoPagamento).IsRequired().HasColumnName("MetodoPagamento").HasColumnType("VARCHAR").HasMaxLength(50);
 
             builder.Property(x => x.NumeroCartao).IsRequired().HasColumnName("NumeroCartao").HasColumnType("VARCHAR").HasMaxLength(50);

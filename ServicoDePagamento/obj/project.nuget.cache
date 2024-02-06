@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MZGO6FFX1ycfGf8imQ6wD4ynFUleBzy/8ed6vTqroCbisWL3MuectjwAJKeMKKXvyvHEBTglriJz5pwGuTB0QA==",
+  "dgSpecHash": "RXJooMGolsFeaBzHOXODVqegFdI1gr/oSNk/Ra5E31Y5gfQhjgntqhZ05yERjWVqtvVluH1Tfbsi4zwXU93mEA==",
   "success": true,
-  "projectFilePath": "C:\\dev\\ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
+  "projectFilePath": "C:\\dev\\API-ServicoPagamento\\ServicoDePagamento\\ServicoDePagamento.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\welli\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\welli\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

@@ -13,6 +13,10 @@ namespace ServicoDePagamento.ViewModel.TransacaoVM
         [Range(1, double.MaxValue)]
         public double Valor {get;set; }
 
+        [Required(ErrorMessage = "Nome é um campo obrigatório")]
+        [Length(3,50)]
+        public string NomeDonoCartao { get; set; }
+
         [Required(ErrorMessage = "Metodo de Pagamento é um campo obrigatório")]
         public EMetodoPagamento MetodoPagamento { get; set; }
 
