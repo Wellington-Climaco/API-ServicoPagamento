@@ -25,7 +25,7 @@ namespace ServicoDePagamento
             builder.Services.AddScoped<IClienteRepository,ClienteRepository > ();
             builder.Services.AddScoped<ITransacaoRepository,TransacaoRepository> ();
             builder.Services.AddScoped<IRecebivelRepository,RecebiveisRepository> ();
-            
+            builder.Services.AddRabbit();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ServicoDePagamento.Interface;
 using ServicoDePagamento.Models;
@@ -10,8 +11,10 @@ namespace ServicoDePagamento.Controllers
     public class ClienteController : ControllerBase 
     {
         private readonly IClienteRepository _clienteRepository;
-        public ClienteController(IClienteRepository clienteRepository)
+        private readonly IBus _bus;
+        public ClienteController(IClienteRepository clienteRepository, IBus bus)
         {
+            _bus = bus;
             _clienteRepository = clienteRepository;   
         }
 
@@ -27,6 +30,10 @@ namespace ServicoDePagamento.Controllers
                 var Cliente = new Cliente { Nome = clienteViewModel.Nome, Documento = clienteViewModel.Documento, Cep = clienteViewModel.Cep };                
                 await _clienteRepository.Adicionar(Cliente);
                 await _clienteRepository.Commit();
+
+                var eventRequest = new ClienteEvent(Cliente.Nome,Cliente.Documento,Cliente.Id);
+                await _bus.Publish(eventRequest);
+
                 return Ok(Cliente);
             }
             catch(DbUpdateException ex)
