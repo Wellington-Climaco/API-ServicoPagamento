@@ -11,10 +11,8 @@ namespace ServicoDePagamento.Controllers
     public class ClienteController : ControllerBase 
     {
         private readonly IClienteRepository _clienteRepository;
-        private readonly IBus _bus;
-        public ClienteController(IClienteRepository clienteRepository, IBus bus)
+        public ClienteController(IClienteRepository clienteRepository)
         {
-            _bus = bus;
             _clienteRepository = clienteRepository;   
         }
 
@@ -30,9 +28,6 @@ namespace ServicoDePagamento.Controllers
                 var Cliente = new Cliente { Nome = clienteViewModel.Nome, Documento = clienteViewModel.Documento, Cep = clienteViewModel.Cep };                
                 await _clienteRepository.Adicionar(Cliente);
                 await _clienteRepository.Commit();
-
-                var eventRequest = new ClienteEvent(Cliente.Nome,Cliente.Documento,Cliente.Id);
-                await _bus.Publish(eventRequest);
 
                 return Ok(Cliente);
             }

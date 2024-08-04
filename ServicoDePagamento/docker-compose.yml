@@ -1,0 +1,39 @@
+version: '3.8'  # Especifique a versão do Docker Compose que você está usando
+
+services:
+  api:
+    container_name: servico-pagamento
+    image: servico-pagamento
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - "4652:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MSSQL_SA_PASSWORD=1q2w3e4r@#$
+    depends_on:
+      - pagamento-db
+    networks:
+      - pagamento-networks
+
+  pagamento-db:
+    container_name: pagamento-db-container
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=1q2w3e4r@#$
+    volumes:
+      - pagamento-db-volumes:/var/opt/mssql
+    networks:
+      - pagamento-networks
+    ports:
+      - "1433:1433"  # Mapeia a porta 1433 do contêiner para a porta 1433 da máquina host
+
+volumes:
+  pagamento-db-volumes:
+
+
+networks:
+  pagamento-networks:
+    driver: bridge

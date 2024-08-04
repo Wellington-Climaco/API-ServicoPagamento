@@ -14,18 +14,18 @@ namespace ServicoDePagamento
             var builder = WebApplication.CreateBuilder(args);
             var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            // Add services to the container.
 
-
-            builder.Services.AddDbContext<ServicoDbContexto>(options => options.UseSqlServer(ConnectionString));
-            builder.Services.AddControllers().AddJsonOptions(x => {
+            builder.Services.AddDbContext<ServicoDbContexto>(options => options.UseSqlServer(ConnectionString,sqlServerOptions =>{
+                sqlServerOptions.EnableRetryOnFailure();
+            }));
+            builder.Services.AddControllers().AddJsonOptions(x =>
+            {
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault;
             });
-            builder.Services.AddScoped<IClienteRepository,ClienteRepository > ();
-            builder.Services.AddScoped<ITransacaoRepository,TransacaoRepository> ();
-            builder.Services.AddScoped<IRecebivelRepository,RecebiveisRepository> ();
-            builder.Services.AddRabbit();
+            builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+            builder.Services.AddScoped<ITransacaoRepository, TransacaoRepository>();
+            builder.Services.AddScoped<IRecebivelRepository, RecebiveisRepository>();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -39,6 +39,12 @@ namespace ServicoDePagamento
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+
+            {
+                var scope =app.Services.CreateScope();
+                var dbcontext = scope.ServiceProvider.GetService<ServicoDbContexto>();
+                dbcontext.Database.EnsureCreated();
             }
 
             app.UseHttpsRedirection();
